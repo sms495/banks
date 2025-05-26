@@ -17,6 +17,19 @@ def mask_account_card(user_number: str) -> Optional[str]:
 
    return count_result
 
+
+def get_date(user_date: str) -> Optional[str]:
+    """Функция, которая работает с датой вводимой с клавиатуры и возвращает строку в формате "ДД.ММ.ГГГГ"""
+    #2024-03-11T02:26:18.671407
+    new_date = user_date[8:10] + "." + user_date[5:7] + "." +user_date[:4]
+
+    return new_date
+
+
 user_number = input("Введите номер счета или данные карты:")
 account_card = mask_account_card(user_number)
 print(account_card)
+
+user_date = input("Введите дату:")
+current_datetime = get_date(user_date)
+print(current_datetime)
