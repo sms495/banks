@@ -14,9 +14,20 @@ def filter_by_state(data: List[Dict], state: str = 'EXECUTED') -> List[Dict]:
     return [item for item in data if item.get('state') == state]
 
 
+def sort_by_date(data: List[Dict], reverse: bool = True) -> List[Dict]:
+    """Функция, которая возращает новый список, отсортированный по дате
+    (по умолчанию - по убыванию)"""
+    return sorted(data, key=lambda x: x['date'], reverse=reverse)
+
+
 filter_executed = filter_by_state(data)
 print(filter_executed)
 
 filter_canceled = filter_by_state(data, 'CANCELED')
 print(filter_canceled)
 
+sort_date_desc = sort_by_date(data)
+print(sort_date_desc)
+
+sort_date_asc = sort_by_date(data, reverse=False)
+print(sort_date_asc)
