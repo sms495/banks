@@ -6,9 +6,9 @@ def get_mask_card_number(card_number: str) -> Optional[str]:
 
     card_result: str
     card_number = card_number.lstrip().rstrip()
-    if  card_number.isdigit() and len(card_number) == 16:
+    if card_number.isdigit() and len(card_number) == 16:
         new_card_number = card_number[:6] + (len(card_number[6:-4]) * "*") + card_number[-4:]
-        card_result = " ".join(new_card_number[i * 4 : (i + 1) * 4] for i in range(4))
+        card_result = " ".join(new_card_number[i * 4:(i + 1) * 4] for i in range(4))
         return card_result
     else:
         return 'Номер карты введен неправильно'
