@@ -31,7 +31,7 @@ def test_successful_function(capsys):
 
 def test_function_with_exception(capsys):
     with pytest.raises(ZeroDivisionError):
-        function_with_exception(10, 0)
+        function_with_exception(1, 0)
 
     # Получаем вывод из консоли
     captured = capsys.readouterr()

@@ -19,7 +19,7 @@ def log(filename=None):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
             try:
-                # Логиреум начало работы функцимм
+                # Логиреум начало работы функции
                 logger.info(f"Starting {func.__name__} with args: {args} kwargs: {kwargs}")
                 print(f"Starting {func.__name__} with args: {args} kwargs: {kwargs}")
 
