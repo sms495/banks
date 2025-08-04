@@ -3,8 +3,14 @@ import logging
 
 
 def log(filename=None):
-    """Декоратор для логирования функции, а также просмотра ее результатов/ошибок."""
-    logger = logging.getLogger(__name__)
+    """
+    Декоратор для логирования функции, а также просмотра ее результатов/ошибок.
+    Этот декоратор записывает информацию о вызовах обернутой функции, переданные
+    аргументы и возвращаемое значение.
+    В случаи ошибки, так же записывается информация об ошибке
+    """
+
+    logger = logging.getLogger("mylog.txt")#(__name__)
 
     if filename:
         handler = logging.FileHandler(filename)
@@ -39,3 +45,8 @@ def log(filename=None):
         return wrapper
 
     return decorator
+
+# Пример использования декоратора
+@log(filename="mylog.txt")
+def my_function(x, y):
+    return x + y

@@ -4,13 +4,13 @@ from src.decorators import log
 
 
 # Функция для успешного тестирования
-@log(filename="mylog.txt")
+@log()
 def successful_function(x, y):
     return x + y
 
 
 # Функция с ошибкой
-@log(filename="mylog.txt")
+@log()
 def function_with_exception(x, y):
     return x / y
 
@@ -37,5 +37,6 @@ def test_function_with_exception(capsys):
     captured = capsys.readouterr()
 
     # Проверяем логи
-    assert "Starting function_with_exception with args: (10, 0) kwargs: {}" in captured.out
-    assert "function_with_exception error: ZeroDivisionError. Inputs: (10, 0), {}" in captured.out
+    assert "Starting function_with_exception with args: (1, 0) kwargs: {}" in captured.out
+    assert "function_with_exception error: ZeroDivisionError. Inputs: (1, 0), {}" in captured.out
+
