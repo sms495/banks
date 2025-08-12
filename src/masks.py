@@ -1,16 +1,41 @@
+import logging
+import os
 from typing import Optional
+
+# Создание папки logs, если она не существует
+if not os.path.exists('logs'):
+    os.makedirs('logs')
+
+# Настройка логирования
+logger = logging.getLogger('masks')
+logger.setLevel(logging.DEBUG)
+
+# Создание обработчика для записи логов в файл
+file_handler = logging.FileHandler('../logs/masks.log', encoding='utf-8', mode='w')
+file_handler.setLevel(logging.DEBUG)
+
+# Форматирование логов
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+
+# Добавление обработчика к логеру
+logger.addHandler(file_handler)
 
 
 def get_mask_card_number(card_number: str) -> Optional[str]:
     """Функция, принимает на вход номер карты и возвращает ее маску."""
+
+    logger.debug(f"Получение маски для номера карты: {card_number}")
 
     card_result: str
     card_number = card_number.lstrip().rstrip()
     if card_number.isdigit() and len(card_number) == 16:
         new_card_number = card_number[:6] + (len(card_number[6:-4]) * "*") + card_number[-4:]
         card_result = " ".join(new_card_number[i * 4:(i + 1) * 4] for i in range(4))
+        logger.info(f"Преобразование в формат маски успешно: {card_result}")
         return card_result
     else:
+        logger.error("Ошибка: Номер карты введен неправильно")
         return 'Номер карты введен неправильно'
 
 
